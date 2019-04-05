@@ -1,1 +1,1 @@
-// igual 6
+// Questão identica a 6
