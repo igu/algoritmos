@@ -2,15 +2,26 @@
 #include <stdlib.h>
 
 int* uniao(int *x1, int *x2, int n1, int n2, int *qtd){
-  int *uni, i, j, dif = 0;
-  printf("Dif %d\n",dif);
+  int *uni, i, j, dif = (n1+n2);
   if(n1 > n2){
-    for(i = 0; i < n1; i++){
-      
+    for(i = 0; i < n2; i++){
+      for(j = 0; j < n1; j++){
+        if(x2[i] == x1[j]){
+          dif--;
+        }
+      }
     }
+    printf("Dif 1 = %d\n", dif);
   }else{
-
+    for(i = 0; i < n1; i++){
+      for(j = 0; j < n2; j++){
+        if(x1[i] == x2[j]){
+          dif--;
+        }
+      }
+    }
   }
+  uni = (int*) malloc(sizeof(int) * dif);
   return uni;
 }
 
