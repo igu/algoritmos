@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
             }
         }
         if(k == 9){
-            // CPF IGUAL
+            // CEP IGUAL
             k = 10;
             while(endereco[k] != '\n'){
                 printf("%c",endereco[k]);
