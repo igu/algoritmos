@@ -38,8 +38,7 @@ int removerLista(int numero){
     atual = inicio;
     while(atual != NULL){
         if(atual->proximo->numero == numero){
-            atual->proximo->proximo = atual->proximo;
-            atual->proximo = NULL;
+            atual->proximo = atual->proximo->proximo;
             quantidade--;
             return 1;
         }
@@ -96,6 +95,7 @@ int main(){
     inserirOrdem(1);
     imprimirLista();
     removerLista(8);
+    imprimirLista();
     if(buscarLista(6)) printf("\nNúmero contido na lista\n");
     else printf("\nNúmero não existe na lista\n");
     printf("\nQuantidade lista: %d\n", qtdLista());
