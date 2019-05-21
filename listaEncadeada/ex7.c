@@ -9,24 +9,43 @@ struct ListaOrdenada{
 
 void imprimirLista(){
     struct ListaOrdenada * atual;
-     atual = inicio;
-     printf("Lista de todos os números cadastrados\n\n");
-     while (atual != NULL) {
-         if(atual->proximo == NULL){
+    atual = inicio;
+    printf("Lista de todos os números cadastrados\n\n");
+    while (atual != NULL) {
+        if(atual->proximo == NULL){
             printf("%d\n", atual->numero);
-         }else{
+        }else{
             printf("%d - ", atual->numero);
-         }
-         atual = atual->proximo;
+        }
+        atual = atual->proximo;
     }
 }
 
-void contaMais(){
-    quantidade++;
+int buscarLista(int numero){
+    struct ListaOrdenada * atual;
+    atual = inicio;
+    while(atual != NULL){
+        if(atual->numero == numero){
+            return 1;
+        }
+        atual = atual->proximo;
+    }
+    return 0;
 }
 
-void contaMenos() {
-    quantidade--;
+int removerLista(int numero){
+    struct ListaOrdenada *atual;
+    atual = inicio;
+    while(atual != NULL){
+        if(atual->proximo->numero == numero){
+            atual->proximo->proximo = atual->proximo;
+            atual->proximo = NULL;
+            quantidade--;
+            return 1;
+        }
+        atual = atual->proximo;
+    }
+    return 0;
 }
 
 int qtdLista() {
@@ -62,7 +81,7 @@ int inserirOrdem(int numero) {
             }
         }
     }
-    contaMais();
+    quantidade++;
     return retorno;
 }
 
@@ -76,6 +95,9 @@ int main(){
     inserirOrdem(10);
     inserirOrdem(1);
     imprimirLista();
-    printf("Quantidade lista: %d\n", qtdLista());
+    removerLista(8);
+    if(buscarLista(6)) printf("\nNúmero contido na lista\n");
+    else printf("\nNúmero não existe na lista\n");
+    printf("\nQuantidade lista: %d\n", qtdLista());
     return 0;
 }
