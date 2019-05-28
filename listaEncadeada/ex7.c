@@ -34,11 +34,13 @@ int buscarLista(int numero){
 }
 
 int removerLista(int numero){
-    struct ListaOrdenada *atual;
+    struct ListaOrdenada *atual, *livre;
     atual = inicio;
     while(atual != NULL){
         if(atual->proximo->numero == numero){
-            atual->proximo = atual->proximo->proximo;
+        	 livre = atual->proximo;
+            atual->proximo = livre->proximo;
+            free(livre);
             quantidade--;
             return 1;
         }
@@ -95,9 +97,9 @@ int main(){
     inserirOrdem(1);
     imprimirLista();
     removerLista(8);
-    imprimirLista();
     if(buscarLista(6)) printf("\nNúmero contido na lista\n");
     else printf("\nNúmero não existe na lista\n");
     printf("\nQuantidade lista: %d\n", qtdLista());
+    imprimirLista();
     return 0;
 }
